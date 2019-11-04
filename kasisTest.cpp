@@ -24,7 +24,7 @@ public:
         this->str = str;
     }
 
-    void test(int n) {
+    void test(int n) { //kassiskeho test naplni pole arr hodnotami vzdialenosti rovnakych retazcov
         for (int i = 0; i < str.length()-n; ++i) {
             for (int j = i+1; j < str.length()-n; ++j) {
                 if (duplication(n, i, j))
@@ -43,7 +43,7 @@ public:
         return true;
     }
 
-    void printArr() {
+    void printArr() { //vypis vzdialenosti zhodnych retazcov
         for (auto x : arr)
             std::cout << x << "\n";
     }

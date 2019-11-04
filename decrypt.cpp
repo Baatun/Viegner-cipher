@@ -47,7 +47,7 @@ public:
         password = str;
     }
 
-    void fillArr(int n) {
+    void fillArr(int n) { //naplnam string do matice ktora ma stlpce dlhe ako odhad hesla znakov, kazdy riadok matice ma rovnaky posun
         bool b = false;
         int c = 0;
         for (int i = 0; i < str.length(); ++i) {
@@ -64,7 +64,7 @@ public:
 
     void coincidenceIndex(int n) {
         difference[count] = 0;
-        for (int i = 0; i < abc.length(); ++i) {
+        for (int i = 0; i < abc.length(); ++i) { //prechadzam celu abecedu
             difference[count] += pow(probability[n][i] - sk[i],2);
         }
         difference[count] = abs(difference[count]);
@@ -82,8 +82,8 @@ public:
     }
 
     void test(int r, int n) {
-        for (int i = 0; i < 26; ++i) {
-            prvVys(r, n);
+        for (int i = 0; i < 26; ++i) { //26 pocet pismen v abecede
+            prvVys(r, n); //pre kazde pismeno vyrata pravdepodobnost vyskytu v texte
         }
         printDifference(r);
     }

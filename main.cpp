@@ -8,15 +8,16 @@ int main() {
     TextInput textInput; //nacitanie inputu z textoveho suboru
     cout << textInput.getStr() << endl; //vypis nacitaneho textu
     KasisTest kasisTest(textInput.getStr()); //nacitanie inputu do kassiskeho testu
-    kasisTest.test(3);
+    kasisTest.test(3); //hlada 3 zhodne znaky
     kasisTest.printArr();
     kasisTest.delitelne();
-    int valP = 26; //to je odhad ake dlhe bude heslo to si davam podla toho co mi vide z delitelne
-    Decrypt decrypt(textInput.getStr(), valP);
-    decrypt.fillArr(valP);
+    int odhadHesla = 23; //to je odhad ake dlhe bude heslo to si davam podla toho co mi vide z delitelne
 
-    for (int i = 0; i < valP; ++i) {
-        decrypt.test(i, valP);
+    Decrypt decrypt(textInput.getStr(), odhadHesla); //konstruktor
+    decrypt.fillArr(odhadHesla); //naplnenie matice v ktorej kazdy riadok ma rovnaky posun hesla
+
+    for (int i = 0; i < odhadHesla; ++i) { //kazdy riadok sa desifruje podla posunu odhadnuteho hesla
+        decrypt.test(i, odhadHesla);
         decrypt.resetCount();
     }
 
