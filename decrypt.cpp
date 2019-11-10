@@ -26,7 +26,7 @@ public:
                       0.0149, 0.0017, 0.0199, 0.0008 };
 
     int lines = 0;
-    string str;
+    string sifra;
     string password;
     string abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     int count = 0;
@@ -36,70 +36,74 @@ public:
 
     Decrypt(string str, int n) {
         this->lines = n;
-        this->str = str;
+        this->sifra = str;
     }
 
     void resetCount() {
-        count = 0;
+        this->count = 0;
     }
 
-    void fillArr(int n) { //naplnam string do matice ktora ma stlpce dlhe ako odhad hesla znakov, kazdy riadok matice ma rovnaky posun
+    void setStr(string str) {
+        this->password = str;
+    }
+
+    void fillArr(int odhadHesla) { //naplnam string do matice ktora ma stlpce dlhe ako odhad hesla znakov, kazdy riadok matice ma rovnaky posun
         bool b = false;
         int c = 0;
-        for (int i = 0; i < str.length(); ++i) {
-            for (int j = 0; j < n; ++j) {
+        for (int i = 0; i < sifra.length(); ++i) {
+            for (int j = 0; j < odhadHesla; ++j) {
                 if (b)
                     return;
-                arr[j][i] = str[c];
+                arr[j][i] = sifra[c];
                 c++;
-                if (str.length() == c)
+                if (sifra.length() == c)
                     b = true;
             }
         }
     }
 
-    void coincidenceIndex(int n) { //po ziskani pravdepodobnosti vyskytu znaku porovnavam vyskyt s vyskytom v jazyku
+    void coincidenceIndex(int riadok) { //po ziskani pravdepodobnosti vyskytu znaku porovnavam vyskyt s vyskytom v jazyku
         difference[count] = 0;
-        for (int i = 0; i < abc.length(); ++i) { //prechadzam celu abecedu
-            difference[count] += pow(probability[n][i] - sk[i],2); //pre kazde pismeno v abecede sa vyrata rodiel a najmensi je to pismeno
+        for (int i = 0; i < abc.length(); ++i) {
+            difference[count] += pow(probability[riadok][i] - sk[i], 2); //pre kazde pismeno v abecede sa vyrata rodiel a najmensi je to pismeno
         }
-        difference[count] = abs(difference[count]); // CO DAVAM DO DIFERENCE COUNT
+        difference[count] = abs(difference[count]);
         count++; //zistujem rozdiel aky mi vysiel ked som ratal pravdepodobnost vyskytu s oficialnym vyskytom pismen v jazyku
     }
 
-    void cesar(int r) {
-        for (int i = 0; i < str.length()/lines; ++i) { //tomuto vobec nechapem lines = odhad hesla
-            int letter = (int)arr[r][i] + 1;
+    void cesar(int riadok) {
+        for (int i = 0; i < sifra.length() / lines; ++i) {
+            int letter = (int)arr[riadok][i] + 1;
             char p = (char)letter;
-            arr[r][i] = p;
-            if (arr[r][i]>90)
-                arr[r][i] = 'A';
+            arr[riadok][i] = p;
+            if (arr[riadok][i] > 90)
+                arr[riadok][i] = 'A';
         }
     }
 
-    void test(int r, int odhadHesla) {
+    void test(int riadok, int odhadHesla) {
         for (int i = 0; i < 26; ++i) { //26 pocet pismen v abecede pre kazde pismeno aby som mal kombinacie
-            pravdepodobnostVyskytu(r, odhadHesla); //pre kazde pismeno vyrata pravdepodobnost vyskytu v texte ????
+            pravdepodobnostVyskytu(riadok, odhadHesla); //pre kazde pismeno vyrata pravdepodobnost vyskytu v texte
         }
-        printDifference(r); //toto co robi
+        printDifference(riadok);
     }
 
-    void pravdepodobnostVyskytu(int r, int odhadHesla) {
+    void pravdepodobnostVyskytu(int riadok, int odhadHesla) {
         int count = 0;
         int countR = 0;
-        for (int i = 0; i < abc.length(); ++i) {                    //pre kazde pismeno z abecedy
-            for (int j = 0; j < str.length() / odhadHesla; ++j) {   //prechadza stringom a zistije pocetnost znaku
-                if (arr[r][j] == abc[i]) {
+        for (int i = 0; i < abc.length(); ++i) {                        //pre kazde pismeno z abecedy
+            for (int j = 0; j < sifra.length() / odhadHesla; ++j) {     //prechadza stringom a zistije pocetnost znaku
+                if (arr[riadok][j] == abc[i]) {
                     count++;
                 }
-                countR++;                                           //zratavaju sa vsetky znaky aby sa dala vypocitat pravdepodobnost vyskytu
+                countR++;                                               //zratavaju sa vsetky znaky aby sa dala vypocitat pravdepodobnost vyskytu
             }
-            probability[r][i] = (double)count/(double)countR;       //i = pismeno abecedy r = prvy riadok v hesle
+            probability[riadok][i] = (double)count / (double)countR;    //i = pismeno abecedy
             count = 0;
             countR = 0;
         }
-        coincidenceIndex(r);
-        cesar(r);
+        coincidenceIndex(riadok);
+        cesar(riadok);
     }
 
     void printDifference(int r) {
@@ -121,11 +125,10 @@ public:
     void decrypt(string pom) { // vlozi sa tu povodny zaaheslovany retazec
         int value = 0;
         for (int i = 0; i < pom.length(); ++i) {
-            value = (pom[i]+65) - password[i%password.length()];
+            value = (pom[i]+65) - password[i%password.length()]; //shift
             if (value < 65)
                 value += 26;
             cout << (char)value;
         }
     }
-
 };

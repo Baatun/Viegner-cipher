@@ -16,27 +16,27 @@ using namespace std;
 
 class KasisTest {
 public:
-    string str;
+    string sifra;
     vector<int> arr;
     int delitel[1024];
 
     KasisTest(string str){
-        this->str = str;
+        this->sifra = str;
     }
 
-    void test(int n) { //kassiskeho test naplni pole arr hodnotami vzdialenosti rovnakych retazcov
-        for (int i = 0; i < str.length()-n; ++i) {
-            for (int j = i+1; j < str.length()-n; ++j) {
-                if (duplication(n, i, j))
-                    arr.push_back(j - i+1); // zazaci do pola vzdialenost ako daleko su odseba tie 3 zhodne znaky
+    void test(int pocetZnakov) {   //naplni pole arr hodnotami vzdialenosti rovnakych retazcov
+        for (int i = 0; i < sifra.length() - pocetZnakov; ++i) {
+            for (int j = i+1; j < sifra.length() - pocetZnakov; ++j) {
+                if (duplication(pocetZnakov, i, j))
+                    arr.push_back(j - i+1); //vzdialenost medzi poziciami
             }
         }
     }
 
-    bool duplication(int n, int i, int j) { // returne true ak najde rovnaky string
-        for (int k = i; k < (i+n); ++k) {
+    bool duplication(int pocetZnakov, int i, int j) { // returne true ak najde rovnaky string
+        for (int k = i; k < (i + pocetZnakov); ++k) {
             j++;
-            if (str[k] == str[j])
+            if (sifra[k] == sifra[j])
                 continue;
             return false;
         }
@@ -58,7 +58,11 @@ public:
         }
         for (int i = 2; i < 32; i++)
         {
-            cout << "Delitlne " << i << " = " << delitel[i] << endl;
+            cout << i << " = " << delitel[i];
+           // for (int j = 0; j < delitel[i]; ++j) {
+           //     cout << "*";
+           // };
+            cout << endl;
         }
     }
 

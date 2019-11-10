@@ -17,8 +17,8 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Viegner.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Viegner.dir/main.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Viegner.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Viegner.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/decrypt.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/decrypt.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kasisTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/kasisTest.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/textInput.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/textInput.cpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +28,20 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
@@ -88,6 +102,7 @@
       <workItem from="1572981751884" duration="1065000" />
       <workItem from="1573061105375" duration="3380000" />
       <workItem from="1573126236597" duration="18000" />
+      <workItem from="1573393993223" duration="7486000" />
     </task>
     <servers />
   </component>
