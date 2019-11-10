@@ -43,10 +43,6 @@ public:
         count = 0;
     }
 
-    void setStr(string str) {
-        password = str;
-    }
-
     void fillArr(int n) { //naplnam string do matice ktora ma stlpce dlhe ako odhad hesla znakov, kazdy riadok matice ma rovnaky posun
         bool b = false;
         int c = 0;
@@ -62,17 +58,17 @@ public:
         }
     }
 
-    void coincidenceIndex(int n) {
+    void coincidenceIndex(int n) { //po ziskani pravdepodobnosti vyskytu znaku porovnavam vyskyt s vyskytom v jazyku
         difference[count] = 0;
         for (int i = 0; i < abc.length(); ++i) { //prechadzam celu abecedu
-            difference[count] += pow(probability[n][i] - sk[i],2);
+            difference[count] += pow(probability[n][i] - sk[i],2); //pre kazde pismeno v abecede sa vyrata rodiel a najmensi je to pismeno
         }
-        difference[count] = abs(difference[count]);
+        difference[count] = abs(difference[count]); // CO DAVAM DO DIFERENCE COUNT
         count++; //zistujem rozdiel aky mi vysiel ked som ratal pravdepodobnost vyskytu s oficialnym vyskytom pismen v jazyku
     }
 
     void cesar(int r) {
-        for (int i = 0; i < str.length()/lines; ++i) {
+        for (int i = 0; i < str.length()/lines; ++i) { //tomuto vobec nechapem lines = odhad hesla
             int letter = (int)arr[r][i] + 1;
             char p = (char)letter;
             arr[r][i] = p;
@@ -81,24 +77,24 @@ public:
         }
     }
 
-    void test(int r, int n) {
-        for (int i = 0; i < 26; ++i) { //26 pocet pismen v abecede
-            prvVys(r, n); //pre kazde pismeno vyrata pravdepodobnost vyskytu v texte
+    void test(int r, int odhadHesla) {
+        for (int i = 0; i < 26; ++i) { //26 pocet pismen v abecede pre kazde pismeno aby som mal kombinacie
+            pravdepodobnostVyskytu(r, odhadHesla); //pre kazde pismeno vyrata pravdepodobnost vyskytu v texte ????
         }
-        printDifference(r);
+        printDifference(r); //toto co robi
     }
 
-    void prvVys(int r, int n) { //pravdepodobnost vyskytu
+    void pravdepodobnostVyskytu(int r, int odhadHesla) {
         int count = 0;
         int countR = 0;
-        for (int i = 0; i < abc.length(); ++i) {
-            for (int j = 0; j < str.length() / n; ++j) {
+        for (int i = 0; i < abc.length(); ++i) {                    //pre kazde pismeno z abecedy
+            for (int j = 0; j < str.length() / odhadHesla; ++j) {   //prechadza stringom a zistije pocetnost znaku
                 if (arr[r][j] == abc[i]) {
                     count++;
                 }
-                countR++;
+                countR++;                                           //zratavaju sa vsetky znaky aby sa dala vypocitat pravdepodobnost vyskytu
             }
-            probability[r][i] = (double)count/(double)countR; //prechadzam dvojrozmernym poloh a pre kazde pismeno vyratam pravdepodobnost vyskytu toho pismena v riadku
+            probability[r][i] = (double)count/(double)countR;       //i = pismeno abecedy r = prvy riadok v hesle
             count = 0;
             countR = 0;
         }
@@ -132,13 +128,4 @@ public:
         }
     }
 
-    void print(int n) {
-        cout << "Print" << endl;
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < str.length(); ++j) {
-                cout << arr[i][j];
-            }
-            cout << endl;
-        }
-    }
 };

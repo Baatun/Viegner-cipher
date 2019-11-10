@@ -14,15 +14,15 @@ int main() {
     int odhadHesla = 23; //to je odhad ake dlhe bude heslo to si davam podla toho co mi vide z delitelne
 
     Decrypt decrypt(textInput.getStr(), odhadHesla); //konstruktor
-    decrypt.fillArr(odhadHesla); //naplnenie matice v ktorej kazdy riadok ma rovnaky posun hesla
+    decrypt.fillArr(odhadHesla); //naplnenie matice v ktorej kazdy riadok ma rovnaky posun hesla TOTO
 
-    for (int i = 0; i < odhadHesla; ++i) { //kazdy riadok sa desifruje podla posunu odhadnuteho hesla
+    for (int i = 0; i < odhadHesla; ++i) { //pre kazde pismeno v hesle
         decrypt.test(i, odhadHesla);
         decrypt.resetCount();
     }
 
     cout << endl;
-    decrypt.decrypt(textInput.getStr());
+    decrypt.decrypt(textInput.getStr()); //TOTO
     cout << "end"  << endl;
     return 0;
 }

@@ -15,7 +15,7 @@ public:
     string output;
 
     TextInput() {
-        ifstream myFile ("text1.txt");
+        ifstream myFile ("text3.txt");
         string str((std::istreambuf_iterator<char>(myFile)), std::istreambuf_iterator<char>());
         cout << str << endl;
         cout << "Text po odstraneni vsetkych medzier a specialnych znakov" << endl;
