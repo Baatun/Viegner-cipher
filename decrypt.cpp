@@ -91,14 +91,14 @@ public:
     void pravdepodobnostVyskytu(int riadok, int odhadHesla) {
         int count = 0;
         int countR = 0;
-        for (int i = 0; i < abc.length(); ++i) {                        //pre kazde pismeno z abecedy
+        for (int i = 0; i < abc.length(); ++i) {
             for (int j = 0; j < sifra.length() / odhadHesla; ++j) {     //prechadza stringom a zistije pocetnost znaku
                 if (arr[riadok][j] == abc[i]) {
                     count++;
                 }
-                countR++;                                               //zratavaju sa vsetky znaky aby sa dala vypocitat pravdepodobnost vyskytu
+                countR++;
             }
-            probability[riadok][i] = (double)count / (double)countR;    //i = pismeno abecedy
+            probability[riadok][i] = (double)count / (double)countR;
             count = 0;
             countR = 0;
         }
@@ -122,7 +122,7 @@ public:
         cout << (char)((26-index)+65);
     }
 
-    void decrypt(string pom) { // vlozi sa tu povodny zaaheslovany retazec
+    void decrypt(string pom) {
         int value = 0;
         for (int i = 0; i < pom.length(); ++i) {
             value = (pom[i]+65) - password[i%password.length()]; //shift

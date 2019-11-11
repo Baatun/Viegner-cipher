@@ -59,9 +59,9 @@ public:
         for (int i = 2; i < 32; i++)
         {
             cout << i << " = " << delitel[i];
-           // for (int j = 0; j < delitel[i]; ++j) {
-           //     cout << "*";
-           // };
+            for (int j = 0; j < delitel[i]; ++j) {
+                cout << "*";
+            };
             cout << endl;
         }
     }
